@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Node.Dockerfile
+    container_name: backend
+    restart: unless-stopped
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - ./.env.local
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+networks:
+  app-network:

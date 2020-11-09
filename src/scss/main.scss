@@ -1,0 +1,58 @@
+@import '~bulma/bulma.sass';
+
+$kbRed: #A2433F;
+$primary: $kbRed;
+$darkGrey: #333;
+$white: #fff;
+$family-sans-serif: "Laila",
+sans-serif;
+$family-serif: "Luckiest Guy",
+serif;
+// 3. Set the derived variables
+$family-primary: $family-sans-serif;
+$family-secondary: $family-serif;
+
+
+.navbar {
+  background: $kbRed;
+}
+
+.navbar a {
+  color: $white;
+}
+
+.navbar-link {
+  color: $white;
+}
+
+.navbar-item {
+  background: $kbRed;
+  color: $white;
+}
+
+.navbar-dropdown {
+  background: $kbRed;
+  color: $white;
+}
+
+.navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+  background: $darkGrey;
+  color: $white;
+}
+
+.navbar-item.has-dropdown:focus .navbar-link, .navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
+  background: $darkGrey;
+  color: $white;
+}
+a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+  background: $darkGrey;
+  color: $white;
+}
+.navbar-dropdown a.navbar-item:focus, .navbar-dropdown a.navbar-item:hover {
+  background: $darkGrey;
+  color: $white;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+  border-color: $white;
+}
