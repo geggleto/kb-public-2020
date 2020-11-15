@@ -11,7 +11,7 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     env_file:
-      - ./.env.local
+      - ./.env.local.local
     ports:
       - "8081:8081"
     networks:

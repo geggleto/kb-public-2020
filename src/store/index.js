@@ -56,6 +56,14 @@ let store = new Vuex.Store({
     apiBase: state => state.API_BASE,
     bp: state => state.bp,
     suits: state => state.suits,
+    isIdInSuits: state => (id) => {
+      for(let b of state.suits) {
+        if (b.id === id) {
+          return true;
+        }
+      }
+      return false;
+    },
     getSkill: state => (id) => {
       let result = state.skillRegistry.filter( (t) => { return id === t.id });
 
@@ -71,6 +79,7 @@ let store = new Vuex.Store({
       state.account = account;
     },
     addNewKitty(state, id) {
+      Bus.dispatch('KittyRecruited', {id:id});
       state.suits.push({
         id : id,
         item_hat : null,

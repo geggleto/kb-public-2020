@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import ImportNewKitty from "@/views/ImportNewKitty";
 import Store from "@/views/Store";
 import Dojo from "@/views/Dojo";
+import Recruit from "@/views/Recruit";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/dojo',
     name: 'Dojo',
     component: Dojo
+  },
+  {
+    path: '/recruit/:id',
+    name: 'Recruit',
+    component: Recruit
   }
 ]
 
