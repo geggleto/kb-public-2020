@@ -2,17 +2,19 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Bus from '../infrastructure/bus';
 import VuexPersistence from 'vuex-persist'
+import axios from 'axios';
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
-const API_BASE = process.env.API_BASE || 'http://localhost:8080';
+const API_BASE = process.env.API_BASE || 'http://localhost:8081';
 
 Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
+    API_BASE,
     account: null,
     bp: 100,
     suits: [
@@ -51,6 +53,7 @@ let store = new Vuex.Store({
     ]
   },
   getters: {
+    apiBase: state => state.API_BASE,
     bp: state => state.bp,
     suits: state => state.suits,
     getSkill: state => (id) => {
@@ -80,6 +83,10 @@ let store = new Vuex.Store({
     }
   },
   actions: {
+    getKittiesFromCk({state}, params) {
+      let offset = params.offset || 0;
+      return axios.get(`${API_BASE}/kitties/${state.account}&offset=${offset}`);
+    }
   },
   modules: {
   },

@@ -2,14 +2,23 @@
 
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({ path: __dirname + '/../.env.local' });
+}
+
 const API_KEY = process.env.KV_API_KEY;
 
 // Constants
-const PORT = 8080;
+const PORT = 8081;
 const HOST = '0.0.0.0';
 
 // App
 const app = express();
+app.use(cors());
+app.options('*', cors()) // include before other routes
+
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
@@ -26,6 +35,7 @@ app.get('/kitties/:wallet', (req, res) => {
         res.status(500);
     })
 })
+
 if (API_KEY) {
     app.listen(PORT, HOST);
     console.log(`Running on http://${HOST}:${PORT}`);

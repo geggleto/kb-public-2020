@@ -6,7 +6,7 @@
       </p>
     </header>
     <footer class="card-footer">
-      <router-link class="card-footer-item" to="/import">Register</router-link>
+      <router-link class="card-footer-item" to="/import">Recruit</router-link>
     </footer>
   </div>
 </template>
