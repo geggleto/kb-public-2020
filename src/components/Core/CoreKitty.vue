@@ -10,6 +10,9 @@
         Kitty#: {{ kitty.id }}
       </p>
     </header>
+    <footer class="card-footer">
+      <slot name="action"></slot>
+    </footer>
   </div>
 </template>
 

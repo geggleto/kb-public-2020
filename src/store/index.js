@@ -50,9 +50,15 @@ let store = new Vuex.Store({
         multiplier: 1,
         cooldown: 100
       }
-    ]
+    ],
+    dojo: {
+      '1' : null,
+      '2' : null,
+      '3' : null,
+    }
   },
   getters: {
+    dojo: state => state.dojo,
     apiBase: state => state.API_BASE,
     bp: state => state.bp,
     suits: state => state.suits,
@@ -89,6 +95,9 @@ let store = new Vuex.Store({
         skill2: 2,
         skill3: 3
       })
+    },
+    setDojoKitty(state, params) {
+      state.dojo[params.position] = params.suit;
     }
   },
   actions: {
@@ -99,7 +108,7 @@ let store = new Vuex.Store({
   },
   modules: {
   },
-  plugins: [vuexLocal.plugin]
+  plugins: [ /*vuexLocal.plugin */]
 });
 
 Bus.addListener('SelectedAccount', async (evt) => {
