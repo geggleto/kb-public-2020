@@ -83,7 +83,8 @@ app.put('/data', async (req, res) => {
         {
             $set : {
                 bp: req.body.bp || 100,
-                suits : req.body.suits
+                suits : req.body.suits,
+                items : req.body.items
             }
         }, {
         upsert : true
