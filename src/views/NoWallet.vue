@@ -1,5 +1,5 @@
 <template>
-$END$
+  <h1>No Wallet Detected</h1>
 </template>
 
 <script>

@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Bus from '../infrastructure/bus';
-import VuexPersistence from 'vuex-persist'
 import axios from 'axios';
 
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-})
+axios.defaults.withCredentials = true
 
 const API_BASE = process.env.API_BASE || 'http://localhost:8081';
 
@@ -16,18 +13,8 @@ let store = new Vuex.Store({
   state: {
     API_BASE,
     account: null,
-    bp: 100,
+    bp: null,
     suits: [
-      {
-        id : 66898,
-        item_helmet : null,
-        item_armor: null,
-        item_weapon: null,
-        item_shield : null,
-        skill1: 1,
-        skill2: 2,
-        skill3: 3
-      }
     ],
     skillRegistry: [
       {
@@ -105,9 +92,21 @@ let store = new Vuex.Store({
         skill2: 2,
         skill3: 3
       })
+
+      writeState(state);
     },
     setDojoKitty(state, params) {
       state.dojo[params.position] = params.suit;
+    },
+    setSuits(state, suits) {
+      if (suits) {
+        for (let s of suits) {
+          state.suits.push(s);
+        }
+      }
+    },
+    setBp(state, bp) {
+      state.bp = parseInt(bp);
     }
   },
   actions: {
@@ -123,6 +122,20 @@ let store = new Vuex.Store({
 
 Bus.addListener('SelectedAccount', async (evt) => {
   store.commit('setAccount', evt.account);
+
+  axios.post(`${API_BASE}/identity/${evt.account}`).then( (resp) => {
+    return axios.get(`${API_BASE}/identity`).then(resp => resp.data);
+  }).then((me) => {
+    store.commit('setBp', me.payload.bp);
+    store.commit('setSuits', me.payload.suits);
+  }).catch((err) => console.error(err));
 });
+
+function writeState(state) {
+  axios.put(`${API_BASE}/data`, {
+    bp: state.bp,
+    suits: state.suits
+  });
+}
 
 export default store;
