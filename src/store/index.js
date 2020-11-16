@@ -43,7 +43,8 @@ let store = new Vuex.Store({
       '1' : null,
       '2' : null,
       '3' : null,
-    }
+    },
+    items: []
   },
   getters: {
     dojo: state => state.dojo,
@@ -99,9 +100,18 @@ let store = new Vuex.Store({
       state.dojo[params.position] = params.suit;
     },
     setSuits(state, suits) {
+      state.suits = [];
       if (suits) {
         for (let s of suits) {
           state.suits.push(s);
+        }
+      }
+    },
+    setItems(state, items) {
+      state.items = [];
+      if (items) {
+        for (let s of items) {
+          state.items.push(s);
         }
       }
     },
@@ -138,7 +148,8 @@ function readState(state) {
 function writeState(state) {
   axios.put(`${API_BASE}/data`, {
     bp: state.bp,
-    suits: state.suits
+    suits: state.suits,
+    items : state.items
   });
 }
 
