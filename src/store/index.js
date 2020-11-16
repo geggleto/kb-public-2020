@@ -52,7 +52,7 @@ let store = new Vuex.Store({
     suits: state => state.suits,
     isIdInSuits: state => (id) => {
       for(let b of state.suits) {
-        if (b.id === id) {
+        if (""+b.id === ""+id) {
           return true;
         }
       }
@@ -125,11 +125,15 @@ Bus.addListener('SelectedAccount', async (evt) => {
 
   axios.post(`${API_BASE}/identity/${evt.account}`).then( (resp) => {
     return axios.get(`${API_BASE}/identity`).then(resp => resp.data);
-  }).then((me) => {
-    store.commit('setBp', me.payload.bp);
-    store.commit('setSuits', me.payload.suits);
+  }).then((state) => {
+    readState(state.payload);
   }).catch((err) => console.error(err));
 });
+
+function readState(state) {
+  store.commit('setBp', state.bp);
+  store.commit('setSuits', state.suits);
+}
 
 function writeState(state) {
   axios.put(`${API_BASE}/data`, {

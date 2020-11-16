@@ -6,6 +6,7 @@ import Store from "@/views/Store";
 import Dojo from "@/views/Dojo";
 import Recruit from "@/views/Recruit";
 import ModifyRecruit from "@/views/ModifyRecruit";
+import NoWallet from "@/views/NoWallet";
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     name: 'Modify',
     component: ModifyRecruit
   },
+  {
+    path: '/no-wallet',
+    name: 'NoWallet',
+    component: NoWallet
+  }
 ]
 
 const router = new VueRouter({
