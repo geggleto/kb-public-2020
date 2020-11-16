@@ -16,7 +16,7 @@
           </p>
         </header>
         <footer class="card-footer">
-          <a class="card-footer-item is-primary" @click="acceptRecruit">Accept Recruit</a>
+          <button class="button is-fullwidth card-footer-item is-primary" @click="acceptRecruit">Accept Recruit</button>
         </footer>
       </div>
     </div>
