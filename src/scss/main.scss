@@ -1,5 +1,3 @@
-@import '~bulma/bulma.sass';
-
 $kbRed: #A2433F;
 $primary: $kbRed;
 $darkGrey: #333;
@@ -11,6 +9,8 @@ serif;
 // 3. Set the derived variables
 $family-primary: $family-sans-serif;
 $family-secondary: $family-serif;
+
+@import '~bulma/bulma.sass';
 
 
 .navbar {
@@ -56,3 +56,4 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 .navbar-link:not(.is-arrowless)::after {
   border-color: $white;
 }
+

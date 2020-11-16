@@ -20,9 +20,10 @@ let store = new Vuex.Store({
     suits: [
       {
         id : 66898,
-        item_hat : null,
+        item_helmet : null,
         item_armor: null,
         item_weapon: null,
+        item_shield : null,
         skill1: 1,
         skill2: 2,
         skill3: 3
@@ -32,14 +33,14 @@ let store = new Vuex.Store({
       {
         id: 1,
         name: 'Smack',
-        type: 'non-magic-damage',
+        type: 'physical',
         multiplier: 1,
         cooldown: 50
       },
       {
         id: 2,
         name: 'Catball',
-        type: 'magic-damage',
+        type: 'magic',
         multiplier: 1,
         cooldown: 50
       },
@@ -69,6 +70,15 @@ let store = new Vuex.Store({
         }
       }
       return false;
+    },
+    getSuit: state => (id) => {
+      let result = state.suits.filter( (t) => { return id === ""+t.id });
+
+      if (result.length > 0) {
+        return result.pop();
+      }
+
+      return null;
     },
     getSkill: state => (id) => {
       let result = state.skillRegistry.filter( (t) => { return id === t.id });

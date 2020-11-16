@@ -5,6 +5,7 @@ import ImportNewKitty from "@/views/ImportNewKitty";
 import Store from "@/views/Store";
 import Dojo from "@/views/Dojo";
 import Recruit from "@/views/Recruit";
+import ModifyRecruit from "@/views/ModifyRecruit";
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,12 @@ const routes = [
     path: '/recruit/:id',
     name: 'Recruit',
     component: Recruit
-  }
+  },
+  {
+    path: '/modify/:id',
+    name: 'Modify',
+    component: ModifyRecruit
+  },
 ]
 
 const router = new VueRouter({

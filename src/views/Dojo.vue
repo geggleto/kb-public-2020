@@ -12,7 +12,7 @@
       <div class="column"></div>
       <div class="column"></div>
       <div class="column">
-        <button v-if="isReady" class="button is-success">Enter When Ready</button>
+        <button v-if="isReady" class="button is-primary is-fullwidth">Enter When Ready</button>
       </div>
       <div class="column"></div>
       <div class="column"></div>

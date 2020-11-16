@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button class="button is-success" @click="modal = true">Select Kitty {{selected}}</button>
+    <button class="button is-primary is-fullwidth mb-1" @click="modal = true">Select Kitty {{selected}}</button>
 
-    <CoreKitty v-if="kitty" :kitty="kitty"></CoreKitty>
+    <CoreKitty v-if="kitty" :kitty="kitty" class="mt-1"></CoreKitty>
 
     <div class="modal"
          v-bind:class="{ 'is-active': modal }"
@@ -27,7 +27,7 @@
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" @click="modal = false">Cancel</button>
+          <button class="button is-fullwidth is-primary" @click="modal = false">Cancel</button>
         </footer>
       </div>
     </div>

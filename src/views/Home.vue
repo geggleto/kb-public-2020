@@ -2,7 +2,12 @@
   <div>
     <div class="columns is-multiline">
       <div class="column is-one-quarter" v-for="(i,k) in suits">
-        <SuitCard :kitty="i" />
+        <SuitCard :kitty="i" :initial="false">
+          <template>
+            <router-link :to="getRoute(i.id)" class="card-footer-item">Modify</router-link>
+            <a href="#" class="card-footer-item">Retire</a>
+          </template>
+        </SuitCard>
       </div>
       <div class="column is-one-quarter">
         <ImportKitty />
@@ -20,6 +25,11 @@ export default {
   computed: {
     suits() {
       return this.$store.getters.suits;
+    }
+  },
+  methods: {
+    getRoute(id) {
+      return '/modify/'+id;
     }
   }
 }
